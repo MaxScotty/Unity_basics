@@ -4,7 +4,30 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    //moving
+    //health
+    [SerializeField] int _playerHealth = 100; //changing inside Unity
+    float _playerSpeed = 0.5f;
+    bool _isGrounded = true;
+    string _playerName = "Hero";
+    Vector2 _playerPos = new Vector2(-5f, 0f);
+
+    Rigidbody2D _rb;
+
+    private void Start()
+    {
+        //gameObject.transform.position = _playerPos;
+        _rb = GetComponent<Rigidbody2D>();
+        _rb.gravityScale = 0;
+
+    }
+
+    private void Update()
+    {
+        
+    }
+
+    //moving horizontally
+    /*
     Rigidbody2D _rb;
 
     float _walkSpeed;
@@ -14,7 +37,7 @@ public class Test : MonoBehaviour
     {
         _rb = gameObject.GetComponent<Rigidbody2D>();
 
-        _walkSpeed = 5.5f;
+        _walkSpeed = 0.5f;
 
     }
 
@@ -27,4 +50,5 @@ public class Test : MonoBehaviour
             _rb.AddForce(new Vector2(_inputHorizontal * _walkSpeed, 0f));
         }
     }
+    */
 }
