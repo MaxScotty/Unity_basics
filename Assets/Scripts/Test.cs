@@ -28,7 +28,6 @@ public class Test : MonoBehaviour
     {
         int damageTaken;
 
-        if (damage < PlayerShield && damage == PlayerShield)
         {
             Debug.Log("Shield is not destroyed!");
             damageTaken = 0;
