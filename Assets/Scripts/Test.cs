@@ -1,39 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    [SerializeField]int _playerHealth = 100;
-    int _playerShield = 50;
-
-    public int PlayerHealth
-    {
-        get {return _playerHealth;}
-        set {_playerHealth = value;}
-    }
-
-    public int PlayerShield
-    {
-        get { return _playerShield ; }
-        set { _playerShield = value; }
-    }
+    [SerializeField] GameObject _item;
 
     private void Start()
     {
-        Debug.Log("You took " + DamageTaken(80) + " in damage");
+        int itemCount = 8;
+
+        for(int i = 0;  i < itemCount; i++)
+        {
+            SpawnItem();
+        }
+  
     }
 
-    int DamageTaken(int damage)
+    void SpawnItem()
     {
-        int damageTaken;
-
-        {
-            Debug.Log("Shield is not destroyed!");
-            damageTaken = 0;
-        }
-
-        return damageTaken;
+        Instantiate(_item, new Vector2(Random.Range(6.5f, - 6.5f), Random.Range(3.5f, -3.5f)),Quaternion.identity);
     }
 }
 
@@ -83,4 +70,36 @@ if (damage < PlayerShield)
             Debug.Log("Shield destroyed and damage taken!");
             damageTaken = damage - PlayerShield;
         }
+
+[SerializeField]int _playerHealth = 100;
+    int _playerShield = 50;
+
+    public int PlayerHealth
+    {
+        get {return _playerHealth;}
+        set {_playerHealth = value;}
+    }
+
+    public int PlayerShield
+    {
+        get { return _playerShield ; }
+        set { _playerShield = value; }
+    }
+
+    private void Start()
+    {
+        Debug.Log("You took " + DamageTaken(80) + " in damage");
+    }
+
+    int DamageTaken(int damage)
+    {
+        int damageTaken;
+
+        {
+            Debug.Log("Shield is not destroyed!");
+            damageTaken = 0;
+        }
+
+        return damageTaken;
+    }
 */
