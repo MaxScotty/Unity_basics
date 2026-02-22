@@ -5,22 +5,34 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    [SerializeField] GameObject _item;
-
-    private void Start()
+    float _moveSpeed = 10f;
+    float _rotationSpeed = 100f;
+    private void Update()
     {
-        int itemCount = 8;
-
-        for(int i = 0;  i < itemCount; i++)
+        if(Input.GetKey(KeyCode.UpArrow))
         {
-            SpawnItem();
+            gameObject.transform.Translate(new Vector2(0f, _moveSpeed) * Time.deltaTime, Space.Self);
         }
-  
-    }
 
-    void SpawnItem()
-    {
-        Instantiate(_item, new Vector2(Random.Range(6.5f, - 6.5f), Random.Range(3.5f, -3.5f)),Quaternion.identity);
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            gameObject.transform.Translate(new Vector2(0f, -_moveSpeed) * Time.deltaTime, Space.Self);
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            gameObject.transform.Translate(new Vector2(-_moveSpeed, 0f) * Time.deltaTime, Space.Self);
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            gameObject.transform.Translate(new Vector2(_moveSpeed, 0f) * Time.deltaTime, Space.Self);
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            gameObject.transform.Rotate(new Vector3(0f, 0f, _rotationSpeed) * Time.deltaTime, Space.Self);
+        }
     }
 }
 
@@ -101,5 +113,23 @@ if (damage < PlayerShield)
         }
 
         return damageTaken;
+    }
+
+ [SerializeField] GameObject _item;
+
+    private void Start()
+    {
+        int itemCount = 8;
+
+        for(int i = 0;  i < itemCount; i++)
+        {
+            SpawnItem();
+        }
+  
+    }
+
+    void SpawnItem()
+    {
+        Instantiate(_item, new Vector2(Random.Range(6.5f, - 6.5f), Random.Range(3.5f, -3.5f)),Quaternion.identity);
     }
 */
