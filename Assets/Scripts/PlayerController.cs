@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     Vector2 _currentVelocity;
 
     bool _canInteract = false;
+    public bool _disableMovement = false;
 
     void Start()
     {
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
         _moveHorizontal = Input.GetAxisRaw("Horizontal");
         _currentVelocity = new Vector2(_moveHorizontal, 0) * _moveSpd;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             if(_canInteract == true)
             {
@@ -32,13 +33,17 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        MovePlayer();
+        if (!_disableMovement)
+            MovePlayer();
     }
 
     void MovePlayer()
     {
-        if (_moveHorizontal != 0) 
+        if (_moveHorizontal != 0)
+        {
             _rb.linearVelocity = _currentVelocity;
+            _rb.AddForce(new Vector2(_moveHorizontal * _moveSpd, 0f));
+        }
         else
         {
             _currentVelocity = new Vector2(0f, 0f);
